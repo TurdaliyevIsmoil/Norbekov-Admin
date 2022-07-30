@@ -1,8 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { MdDelete } from "react-icons/md";
-import { GrClose } from "react-icons/gr";
-import { BsFillEyeFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { useDataContext } from "../../contexts/DataContext";
 

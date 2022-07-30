@@ -1,7 +1,6 @@
-import React, { createElement } from "react";
+import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { FiLogOut } from "react-icons/fi";
 import { RiMessage3Fill } from "react-icons/ri";
 import { useDataContext } from "../contexts/DataContext";
 

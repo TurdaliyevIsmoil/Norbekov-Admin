@@ -4,13 +4,9 @@ import logo from "../images/logo.png";
 import { NavLink } from "react-router-dom";
 import {
   MdOutlineDashboardCustomize,
-  MdHandyman,
-  MdTravelExplore,
 } from "react-icons/md";
-import { RiFolderInfoLine } from "react-icons/ri";
 import { GrServices } from "react-icons/gr";
 import { RiNewspaperLine } from "react-icons/ri";
-import { FaUniversity } from "react-icons/fa";
 import { BiMessageDetail } from "react-icons/bi";
 import { BsTable } from "react-icons/bs";
 

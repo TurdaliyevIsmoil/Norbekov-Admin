@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ReactQuill, { Quill, Mixin, Toolbar } from "react-quill";
+import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";

@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { FaUniversity } from "react-icons/fa";
-import { BsTools } from "react-icons/bs";
-import { MdTravelExplore, MdOutlinePeopleAlt } from "react-icons/md";
+import {  MdOutlinePeopleAlt } from "react-icons/md";
 import { useDataContext } from "../contexts/DataContext";
 import { useNavigate } from "react-router-dom";
 import { BsTable } from "react-icons/bs";
