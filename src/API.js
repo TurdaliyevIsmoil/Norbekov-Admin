@@ -8,7 +8,7 @@ export default {
     delete: `${HTTP}://${mainPath}/admin/delete?id=`,
   },
   contact: {
-    get: `${HTTP}://${mainPath}/api/contacts/get`,
+    get: `${HTTP}://${mainPath}/api/contact/get`,
   },
   admin: {
     get: `${HTTP}://${mainPath}/contacts/get `,
