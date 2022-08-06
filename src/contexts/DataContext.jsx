@@ -124,7 +124,7 @@ export const DataProvider = ({ children }) => {
       redirect: "follow",
     };
 
-    fetch("http://api.norbekov.uz/api/service/create", requestOptions)
+    fetch(API.service.create, requestOptions)
       .then((d) => d.json())
       .then((d) => {
         return ImgUploader(data.img, API.news.updateImage, d.data);
@@ -390,7 +390,7 @@ export const DataProvider = ({ children }) => {
       redirect: "follow",
     };
 
-    fetch("http://api.norbekov.uz/admin/login", requestOptions)
+    fetch(API.admin.login, requestOptions)
       .then((d) => (d.status === 200 ? d.json() : Error("Invalid Auth")))
       .then((data) => dispatch({ type: LOGIN, payload: data }))
       .catch((e) => console.log(e));
