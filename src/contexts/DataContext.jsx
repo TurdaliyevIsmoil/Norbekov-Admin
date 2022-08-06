@@ -74,36 +74,61 @@ export const DataProvider = ({ children }) => {
   // Create
   const addService = async (data) => {
     loadingStart();
-    const raw = {
-      post_body: data.body,
-      post_body_ru: data.body_ru,
-      post_title: data.title,
-      post_title_ru: data.title_ru,
-      price: data.price,
-      post_img_url:
-        "https://timesofindia.indiatimes.com/thumb/msid-83989046,width-1200,height-900,resizemode-4/83989046.jpg",
-    };
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", `Bearer ${state.token}`);
-    myHeaders.append("Content-Type", "application/json");
-
-    var requestOptions = {
+    let post_id = null;
+    await fetch(API.service.create, {
       method: "POST",
-      headers: myHeaders,
-      body: JSON.stringify(raw),
-      redirect: "follow",
-    };
-
-    fetch(API.service.create, requestOptions)
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `bearer ${state.token}`,
+      },
+      body: JSON.stringify({
+        post_body: data.body,
+        post_body_ru: data.body_ru,
+        post_title: data.title,
+        post_title_ru: data.title_ru,
+        price: data.price,
+        post_img_url: "",
+      }),
+    })
       .then((d) => d.json())
-      .then((d) => {
-        return ImgUploader(data.img, API.service.updateImage, d.id);
-      })
-      .then(() => {
-        fetchServices();
-        navigate("/services");
-      })
+      .then((d) => (post_id = d.id))
       .catch((e) => console.log(e));
+    await ImgUploader(data.img, API.service.updateImage, post_id);
+    fetchServices();
+    navigate("/services");
+
+
+    // loadingStart();
+    // const raw = {
+    //   post_body: data.body,
+    //   post_body_ru: data.body_ru,
+    //   post_title: data.title,
+    //   post_title_ru: data.title_ru,
+    //   price: data.price,
+    //   post_img_url:
+    //     "https://timesofindia.indiatimes.com/thumb/msid-83989046,width-1200,height-900,resizemode-4/83989046.jpg",
+    // };
+    // var myHeaders = new Headers();
+    // myHeaders.append("Authorization", `Bearer ${state.token}`);
+    // myHeaders.append("Content-Type", "application/json");
+
+    // var requestOptions = {
+    //   method: "POST",
+    //   headers: myHeaders,
+    //   body: JSON.stringify(raw),
+    //   redirect: "follow",
+    // };
+
+    // fetch(API.service.create, requestOptions)
+    //   .then((d) => d.json())
+    //   .then((d) => {
+    //     return ImgUploader(data.img, API.service.updateImage, d.id);
+    //   })
+    //   .then(() => {
+    //     fetchServices();
+    //     navigate("/services");
+    //   })
+    //   .catch((e) => console.log(e));
   };
   const addNews = async (data) => {
     loadingStart();
