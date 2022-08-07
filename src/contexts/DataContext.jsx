@@ -98,37 +98,7 @@ export const DataProvider = ({ children }) => {
     navigate("/services");
 
 
-    // loadingStart();
-    // const raw = {
-    //   post_body: data.body,
-    //   post_body_ru: data.body_ru,
-    //   post_title: data.title,
-    //   post_title_ru: data.title_ru,
-    //   price: data.price,
-    //   post_img_url:
-    //     "https://timesofindia.indiatimes.com/thumb/msid-83989046,width-1200,height-900,resizemode-4/83989046.jpg",
-    // };
-    // var myHeaders = new Headers();
-    // myHeaders.append("Authorization", `Bearer ${state.token}`);
-    // myHeaders.append("Content-Type", "application/json");
 
-    // var requestOptions = {
-    //   method: "POST",
-    //   headers: myHeaders,
-    //   body: JSON.stringify(raw),
-    //   redirect: "follow",
-    // };
-
-    // fetch(API.service.create, requestOptions)
-    //   .then((d) => d.json())
-    //   .then((d) => {
-    //     return ImgUploader(data.img, API.service.updateImage, d.id);
-    //   })
-    //   .then(() => {
-    //     fetchServices();
-    //     navigate("/services");
-    //   })
-    //   .catch((e) => console.log(e));
   };
   const addNews = async (data) => {
     loadingStart();
@@ -372,41 +342,47 @@ export const DataProvider = ({ children }) => {
   const login = (u, p) => {
     loadingStart();
 
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "text/plain");
+    // var myHeaders = new Headers();
+    // myHeaders.append("Content-Type", "text/plain");
 
-    // var raw = `{\r\n    \"user_name\": \"${u}\",\r\n    \"password\": \"${p}\"\r\n}`;
-    const raw = { user_name: u, password: p };
+    // // var raw = `{\r\n    \"user_name\": \"${u}\",\r\n    \"password\": \"${p}\"\r\n}`;
+    // const raw = { user_name: u, password: p };
 
-    var requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: JSON.stringify(raw),
-      redirect: "follow",
-    };
+    // var requestOptions = {
+    //   method: "POST",
+    //   headers: myHeaders,
+    //   body: JSON.stringify(raw),
+    //   redirect: "follow",
+    // };
 
-    fetch(API.admin.login, requestOptions)
-      .then((d) => (d.status === 200 ? d.json() : Error("Invalid Auth")))
-      .then((data) => dispatch({ type: LOGIN, payload: data }))
-      .catch((e) => console.log(e));
+    // fetch(API.admin.login, requestOptions)
+    //   .then((d) => (d.status === 200 ? d.json() : Error("Invalid Auth")))
+    //   .then((data) => dispatch({ type: LOGIN, payload: data }))
+    //   .catch((e) => console.log(e));
 
     // Customized data
-    // const inf = {
-    //   password: p.toString(),
-    //   user_name: u.toString(),
-    // };
-    // // Request
-    // fetch(API.admin.login, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(inf),
-    // })
-    //   // Cheking
-    // .then((d) => (d.status === 200 ? d.json() : Error("Invalid Auth")))
-    // .then((data) => dispatch({ type: LOGIN, payload: data }))
-    // .catch((e) => console.log(e));
+    const inf = {
+      password: p.toString(),
+      user_name: u.toString(),
+    };
+    // Request
+    fetch(API.admin.login, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(inf),
+    })
+      // Cheking
+      .then((d) => {
+        if (d.status === 200) return d.json()
+        else {
+          alert("Wrong information!")
+          throw new Error("Incorrent Data!")
+        }
+      })
+      .then((data) => dispatch({ type: LOGIN, payload: data }))
+      .catch((e) => console.log(e));
     loadingEnd();
   };
 
